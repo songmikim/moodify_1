@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <script th:fragment="image_tpl" id="image-tpl" type="text/html">
+        <div class="file-images" id="file-[seq]">
+            <i class="xi-close remove" data-seq="[seq]"></i>
+            <img src="[imageUrl]" class="image show-image" data-seq="[seq]">
+        </div>
+    </script>
+
+    <script th:fragment="editor_tpl" id="editor-tpl" type="text/html">
+        <span class="file-items" id="file-[seq]">
+            <a th:href="@{/file/download/[seq]}">[fileName]</a>
+            <i class="xi-upload insert-editor" data-file-url="[fileUrl]"></i>
+            <i class="xi-close remove" data-seq="[seq]"></i>
+        </span>
+    </script>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+
+<th:block layout:fragment="addCommonCss">
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/error.css?v=(v=${@utils.version()})}">
+</th:block>
+
+<main layout:fragment="content" class="error-page">
+    <th:block th:replace="~{error/_content::common}"></th:block>
+</main>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="pagination" th:if="${pagination != null}" th:object="${pagination}">
+    <div class="pagination">
+        <th:block th:if="*{prevRangePage > 0}">
+            <a th:href="*{#strings.concat(baseUrl, 1)}">1</a>
+            <a th:href="*{#strings.concat(baseUrl, prevRangePage)}">
+                <i class="xi-angle-left"></i>
+            </a>
+        </th:block>
+        <a th:each="page : *{pages}" th:href="${page[1]}" th:text="${page[0]}" th:classappend="${page[0] == '' + pagination.page} ? 'on'"></a>
+
+        <th:block th:if="*{nextRangePage > 0}">
+            <a th:href="*{#strings.concat(baseUrl, nextRangePage)}" >
+                <i class="xi-angle-right"></i>
+            </a>
+            <a th:href="*{#strings.concat(baseUrl, lastPage)}" th:text="*{lastPage}"></a>
+        </th:block>
+    </div>
+</th:block>
+</html>

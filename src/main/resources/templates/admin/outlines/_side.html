@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <aside th:fragment="menus">
+        <a th:href="@{/admin/config}" th:classappend="${mainCode == 'config'} ? 'on'">
+            <i class="xi-cog"></i>
+            사이트 설정
+        </a>
+        <a th:href="@{/admin/member}" th:classappend="${mainCode == 'member'} ? 'on'">
+            <i class="xi-user-o"></i>
+            회원관리
+        </a>
+
+    </aside>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+
+<section layout:fragment="content">
+    <h1 th:text="${pageTitle}"></h1>
+
+    <form name="frmSearch" method="GET" th:action="@{/admin/product/list}" autocomplete="off" th:object="${productSearch}">
+        <table class="table-cols">
+            <tr>
+                <th>등록일</th>
+                <td colspan="3">
+                    <input type="date" name="sDate" th:field="*{sDate}" class="w180">
+                    ~
+                    <input type="date" name="eDate" th:field="*{eDate}" class="w180">
+                </td>
+            </tr>
+            <tr>
+                <th width="120">키워드 검색</th>
+                <td width="450">
+                    <div class="flex">
+                        <select name="sopt" th:field="*{sopt}" class="w180">
+                            <option value="ALL">통합검색</option>
+                            <option value="NAME">상품명</option>
+                            <option value="DESCRIPTION">상품설명</option>
+                        </select>
+                        <input type="text" name="skey" th:field="*{skey}">
+                    </div>
+                </td>
+                <th width="120">상품 가격</th>
+                <td>
+                    <input type="number" name="sPrice" th:field="*{sPrice}" class="w180">
+                    ~
+                    <input type="number" name="ePrice" th:field="*{ePrice}" class="w180">
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="submit-btn">검색하기</button>
+    </form>
+
+    <h2>상품 목록</h2>
+    <form name="frmList" method="POST" th:action="@{/admin/product}" target="ifrmProcess" autocomplete="off">
+        <input type="hidden" name="_method" value="PATCH">
+        <table class="table-rows">
+            <thead>
+                <tr>
+                    <th width="30">
+                        <input type="checkbox" class="check-all" id="check-all" data-target-name='idx'>
+                        <label for="check-all" class="standalone"></label>
+                    </th>
+                    <th colspan="2">상품</th>
+                    <th width="150">상품분류</th>
+                    <th width="120">상태</th>
+                    <th width="150">가격</th>
+                    <th width="120">등록일시</th>
+                    <th width="250"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${items == null || items.isEmpty()}">
+                    <td colspan="8" class="no-data">조회된 상품이 없습니다.</td>
+                </tr>
+                <tr th:unless="${items == null || items.isEmpty()}" th:each="item, status : ${items}" th:object="${item}">
+                    <td>
+                        <input type="hidden" th:name="${'seq_' + status.index}" th:value="*{seq}">
+                        <input type="checkbox" name="idx" th:value="${status.index}" th:id="${'idx-' + status.index}">
+                        <label th:for="${'idx-' + status.index}" class="standalone"></label>
+                    </td>
+                    <td width="80">
+                        <a th:href="@{/product/view/{seq}(seq=*{seq})}" target="_blank">
+                            <th:block th:if="*{listImages == null || listImages.isEmpty()}">
+                                <img th:src="@{/common/images/no_image.jpg}" width="80">
+                            </th:block>
+                            <th:block th:unless="*{listImages == null || listImages.isEmpty()}" th:utext="*{@utils.printThumb(listImages[0].seq, 80, 80)}"></th:block>
+                        </a>
+                    </td>
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{category}" align="center"></td>
+                    <td>
+                        <select th:name="${'status_' + status.index}">
+                            <option th:each="s : ${statusList}" th:value="${s.name()}" th:text="${#messages.msg('productStatus.' + s.name())}" th:selected="${s} == *{status}"></option>
+                        </select>
+                    </td>
+                    <td align="center">
+                        <div th:if="*{consumerPrice > 0}" th:text="*{#strings.concat('소비자가:', consumerPrice >= 1000 ? #numbers.formatInteger(consumerPrice, 3, 'COMMA') : consumerPrice, '원')}"></div>
+                        <div th:if="*{salePrice > 0}" th:text="*{#strings.concat('판매가:', salePrice >= 1000 ? #numbers.formatInteger(salePrice, 3, 'COMMA') : salePrice, '원')}"></div>
+                    </td>
+                    <td th:utext="*{#temporals.format(createdAt, 'yyyy.MM.dd HH:mm:ss')}" align="center"></td>
+                    <td>
+                        <a th:href="@{/admin/product/update/{seq}(seq=*{seq})}" target=")blank" class="sbtn">상품정보 수정</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-action">
+            선택상품
+            <button type="button" class="sbtn process-form delete" data-form-name="frmList">삭제하기</button>
+            <button type="button" class="sbtn black process-form edit" data-form-name="frmList">수정하기</button>
+        </div>
+    </form>
+    <th:block th:replace="~{common/_pagination::pagination}"></th:block>
+</section>
+</html>

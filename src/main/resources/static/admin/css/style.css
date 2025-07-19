@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+* {
+    box-sizing: border-box;
+    outline: none;
+    font-family: "Nanum Gothic", sans-serif;
+}
+
+html {
+    font-size: 13px;
+}
+
+body {
+    margin: 0;
+    color: #000;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+ol, ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li, dl, dt, dd {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    border: 0;
+}
+
+/* 관리자 기본 레이아웃 구성 S */
+header {
+    height: 80px;
+    background: #fff;
+    border-bottom: 3px solid #000;
+}
+
+main {
+    display: flex;
+}
+
+main > aside {
+    width: 200px;
+    background: #d5d5d5;
+    min-height: 850px;
+    margin-right: 15px;
+}
+
+main > .main-content {
+    flex-grow: 1;
+
+}
+
+/* 관리자 기본 레이아웃 구성 E */
+
+/* 메뉴 공통 S */
+main > aside a {
+    display: block;
+    padding: 25px 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px solid #212121;
+}
+
+main > aside a.on {
+    background: #212121;
+    color: #fff;
+}
+
+main > .main-content {
+    padding-right: 25px;
+}
+
+main > .main-content > nav {
+    box-shadow: 2px 2px 10px #212121;
+    margin: 30px 0;
+    display: flex;
+    height: 50px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+main > .main-content > nav a {
+    line-height: 50px;
+    font-size: 1.3rem;
+    padding: 0 35px;
+}
+
+main > .main-content > nav a.on {
+    background: #212121;
+    color: #fff;
+}
+/* 메뉴 공통 E */
+
+/* 공통 입력 항목 S */
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='email'],
+input[type='date'],
+select {
+    border: 1px solid #f8f8f8;
+    height: 40px;
+    padding: 0 10px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+select {
+    padding: 0;
+}
+
+textarea {
+    border: 1px solid #f8f8f8;
+    min-height: 150px;
+    padding: 10px;
+    border-radius: 3px;
+    resize: none;
+    width: 100%;
+}
+
+/*  공통 입력 항목 E */
+
+/* 테이블 공통 S */
+.table-cols {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.table-cols th {
+    background: #e6e6e6;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+.table-cols td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-cols tr:first-of-type th,
+.table-cols tr:first-of-type td {
+    border-top: 1px solid #ccc;
+}
+
+.table-rows {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.table-rows thead th {
+    background: #212121;
+    color: #fff;
+    padding: 7px 10px;
+    font-size: 1.15rem;
+}
+.table-rows thead th + th {
+    border-left: 1px solid #f8f8f8;
+}
+.table-rows tbody td {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.table-rows tbody tr:nth-of-type(2n) td {
+    background: #f8f8f8;
+}
+
+.table-action {
+    padding: 20px 10px;
+    border-bottom: 1px solid #212121;
+    font-size: 1.15rem;
+}
+
+.table-rows .no-data {
+    padding: 150px 0;
+    text-align: center;
+    font-size: 1.15rem;
+}
+/* 테이블 공통 E */
+
+/* 여백 공통 S */
+.mb10 {
+    margin-bottom: 10px !important;
+}
+
+.mb20 {
+    margin-bottom: 20px !important;
+}
+
+.mb30 {
+    margin-bottom: 30px !important;
+}
+
+.mr5 {
+    margin-right: 5px !important;
+}
+
+.mr10 {
+    margin-right: 10px !important;
+}
+/* 여백 공통 E */
+
+/* 너비 공통 S */
+.w180 {
+    width: 180px !important;
+}
+
+.w220 {
+    width: 220px !important;
+}
+
+/* 너비 공통 E */
+
+/* 버튼 공통 S */
+.btn {
+    border: 2px solid #000;
+    color: #000;
+    background: #fff;
+    cursor: pointer;
+    height: 50px;
+    font-size: 1.35rem;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.btn.black {
+    background: #000;
+    color: #fff;
+}
+
+.button-group {
+    display: flex;
+    width: 550px;
+    margin: 0 auto;
+}
+
+.button-group .btn {
+    flex-grow: 1;
+    width: 0;
+}
+
+.button-group .btn + .btn {
+    margin-left: 5px;
+}
+
+.submit-btn {
+    background: #000;
+    color: #fff;
+    min-width: 250px;
+    height: 45px;
+    border: 0;
+    border-radius: 3px;
+    display: block;
+    margin: 20px auto;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+.sbtn {
+    display: inline-block;
+    height: 40px;
+    border: 1px solid #000;
+    color: #000;
+    font-size: 1rem;
+    line-height: 38px;
+    padding: 0 15px;
+    min-width: 80px;
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.sbtn.black {
+    background: #000;
+    color: #fff;
+}
+/* 버튼 공통 E */
+
+/* 라디오 버튼 공통 S */
+
+input[type='radio'] {
+    display: none;
+}
+
+input[type='radio']+label {
+    padding: 0 20px 0 33px;
+    height: 40px;
+    line-height: 40px;
+    background:url("../images/radio.png") no-repeat left center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+input[type='radio']:checked + label {
+    background:url("../images/radio_on.png") no-repeat left center;
+}
+
+/* 라디오 버튼 공통 E */
+
+/* 체크박스 공통 S */
+input[type='checkbox'] {
+    display: none;
+}
+
+input[type='checkbox'] + label,
+.checkbox input[type='checkbox'] ~ label {
+    background:url("../images/check.png") no-repeat left center;
+    padding: 0 20px 0 33px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+input[type='checkbox']:checked + label,
+.checkbox input[type='checkbox']:checked ~ label {
+    background:url("../images/check_on.png") no-repeat left center;
+}
+
+input[type='checkbox'] + label.standalone {
+    padding: 0;
+    width: 23px;
+    height: 23px;
+}
+/* 체크박스 공통 E */
+
+/* 페이징 공통 S */
+.pagination {
+    display: flex;
+    justify-content: center;
+    height: 45px;
+    margin: 25px 0;
+}
+
+.pagination > a {
+    min-width: 45px;
+    padding: 0 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    line-height: 43px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.pagination > a + a {
+    margin-left: 3px;
+}
+
+.pagination > a.on {
+    background: #000;
+    color: #fff;
+}
+/* 페이징 공통 E */
+
+h1 {
+    font-size: 1.75rem;
+    padding: 0;
+    margin: 0 0 15px;
+}
+
+h2 {
+    font-size: 1.35rem;
+    padding:0;
+    margin: 0 0 10px;
+}

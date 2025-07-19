@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="base_url" th:content="@{/}">
+        <meta name="csrf_token" th:content="${_csrf.token}">
+        <meta name="csrf_header" th:content="${_csrf.headerName}">
+        <meta name="keywords" th:content="${@utils.keywords()}">
+        <meta name="description" th:content="${@utils.description()}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/xeicon/2/xeicon.min.css">
+        <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css?v={v}(v=${@utils.version()})}">
+        <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCommonCss}"
+              th:href="@{/common/css/{css}.css?v={v}(css=${cssFile}, v=${@utils.version()})}">
+        <th:block layout:fragment="addCommonCss"></th:block>
+
+        <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css?v={v}(v=${@utils.version()})}">
+        <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"
+              th:href="@{/admin/css/{css}.css?v={v}(css=${cssFile}, v=${@utils.version()})}">
+        <th:block layout:fragment="addCss"></th:block>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script th:src="@{/common/js/common.js?v={v}(v=${@utils.version()})}"></script>
+        <script th:each="jsFile : ${addCommonScript}" th:src="@{/common/js/{js}.js?v={v}(js=${jsFile}, v=${@utils.version()})}"></script>
+        <th:block layout:fragment="addCommonScript"></th:block>
+
+        <script th:src="@{/admin/js/common.js?v={v}(v=${@utils.version()})}"></script>
+        <script th:each="jsFile : ${addScript}" th:src="@{/admin/js/{js}.js?v={v}(js=${jsFile}, v=${@utils.version()})}"></script>
+        <th:block layout:fragment="addScript"></th:block>
+        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+    </head>
+    <body>
+        <header th:replace="~{admin/outlines/_header::common}"></header>
+        <main>
+            <aside th:replace="~{admin/outlines/_side::menus}"></aside>
+            <section class="main-content">
+                <nav th:replace="~{admin/outlines/_submenu::menus}"></nav>
+                <section layout:fragment="content"></section>
+            </section>
+        </main>
+        <footer th:replace="~{admin/outlines/_footer::common}"></footer>
+        <iframe name="ifrmProcess" class="dn"></iframe>
+    </body>
+</html>

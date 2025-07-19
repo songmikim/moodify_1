@@ -1,0 +1,9 @@
+--CREATE TABLE EMOTION (
+--    seq BIGINT AUTO_INCREMENT,
+--    category VARCHAR(40),
+--    keywords TEXT NOT NULL,
+--    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+--    modifiedAt DATETIME,
+--    deletedAt DATETIME,
+--    PRIMARY KEY(seq)
+--);

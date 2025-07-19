@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <header th:fragment="common">
+        <div class="top">
+            <div class="left">
+                <a th:href="@{/admin}">홈</a>
+                <a th:href="@{/}" target="_blank">사이트 메인으로 이동</a>
+            </div>
+            <div class="right">
+                <th:block th:if="${isLogin}">
+                    <span th:text="${#messages.msg('LOGIN_MSG', loggedMember.name, loggedMember.email)}"></span>님 로그인
+                    <a th:href="@{/logout}">로그아웃</a>
+                </th:block>
+                <th:block th:unless="${isLogin}">
+                    <a th:href="@{/member/join}">회원가입</a>
+                    <a th:href="@{/member/login}">로그인</a>
+                </th:block>
+            </div>
+        </div>
+        <div class="logo-menus">
+            <a th:href="@{/admin}">
+                <img th:src="@{/admin/images/logo.png}">
+            </a>
+        </div>
+    </header>
+</html>
