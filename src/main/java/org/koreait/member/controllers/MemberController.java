@@ -7,6 +7,7 @@ import org.koreait.global.libs.Utils;
 import org.koreait.member.services.JoinService;
 import org.koreait.member.social.constants.SocialType;
 import org.koreait.member.social.services.KakaoLoginService;
+import org.koreait.member.social.services.NaverLoginService;
 import org.koreait.member.validators.JoinValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,7 @@ public class MemberController {
     private final JoinValidator joinValidator;
     private final JoinService joinService;
     private final KakaoLoginService kakaoLoginService;
+    private final NaverLoginService naverLoginService;
 
     @ModelAttribute("addCss")
     public List<String> addCss() {
@@ -92,6 +94,7 @@ public class MemberController {
 
         /* 소셜 로그인 URL */
         model.addAttribute("kakaoLoginUrl", kakaoLoginService.getLoginUrl(form.getRedirectUrl()));
+        model.addAttribute("naverLoginUrl", naverLoginService.getLoginUrl(form.getRedirectUrl()));
 
         return utils.tpl("member/login");
     }

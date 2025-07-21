@@ -18,19 +18,19 @@ import java.time.LocalDateTime;
 })
 public class Member extends BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
 
-    @Column(length=75, unique = true, nullable = false)
+    @Column(length = 75, unique = true, nullable = false)
     private String email;
 
-    @Column(length=65)
+    @Column(length = 65)
     private String password;
 
-    @Column(length=45, nullable = false)
+    @Column(length = 45, nullable = false)
     private String name;
 
-    @Column(length=15, nullable = false)
+    @Column(length = 15, nullable = false)
     private String mobile;
 
     @Enumerated(EnumType.STRING)
@@ -39,7 +39,7 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
-    @Column(length=65)
+    @Column(length = 65)
     private String socialToken;
 
     private boolean termsAgree;
@@ -49,4 +49,5 @@ public class Member extends BaseEntity {
     private LocalDateTime expired; // 계정 만료 일자, null이면 만료 X
 
     private LocalDateTime credentialChangedAt; // 비밀번호 변경 일시
+
 }

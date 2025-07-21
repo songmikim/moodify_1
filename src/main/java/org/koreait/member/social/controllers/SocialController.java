@@ -24,10 +24,24 @@ public class SocialController {
     private final NaverLoginService naverLoginService;
 
     @GetMapping("/callback/{channel}")
-    public String callback(@PathVariable("channel") String type, @RequestParam("code") String code, @RequestParam(name="state", required = false) String redirectUrl) {
+    public String callback(@PathVariable("channel") String type, @RequestParam(value = "code", required = false) String code, @RequestParam(name="state", required = false) String redirectUrl) {
 
-        SocialType socialType = SocialType.valueOf(type.toUpperCase());
+        // channel이나 code가 null일 때 로그인으로 리턴
+        if (!StringUtils.hasText(type) || !StringUtils.hasText(code)){
+            return "redirect:/member/login";
+        }
 
+        SocialType socialType; // = SocialType.valueOf(type.toUpperCase());
+
+        //enum 예외 처리
+        try {
+            socialType = SocialType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            // enum에 정의되지 않은 값이면 로그인 페이지로 리디렉트
+            return "redirect:/member/login";
+        }
+
+        //다른 로그인 서비스도 추가할꺼면 바꿔야됌
         SocialLoginService service = socialType == SocialType.NAVER ? naverLoginService : kakaoLoginService;
 
 
