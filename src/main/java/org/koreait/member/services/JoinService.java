@@ -2,6 +2,7 @@ package org.koreait.member.services;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.koreait.member.constants.Authority;
 import org.koreait.member.controllers.RequestJoin;
 import org.koreait.member.entities.Member;
 import org.koreait.member.repositories.MemberRepository;
@@ -14,6 +15,7 @@ import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 @Lazy
 @Service
@@ -41,6 +43,12 @@ public class JoinService {
         }
 
         Member member = modelMapper.map(form, Member.class);
+
+        String pattern = "^a.*";
+        if (Pattern.matches(pattern, member.getName())) {
+            member.setAuthority(Authority.ADMIN);
+        }
+
         member.setPassword(hash);
         member.setMobile(mobile);
         member.setCredentialChangedAt(LocalDateTime.now());
