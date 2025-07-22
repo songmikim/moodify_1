@@ -24,7 +24,8 @@ spring:
   # 타임리프 설정
   thymeleaf:
     cache: false
-    prefix: file:src/main/resources/templates/
+    prefix: classpath:/templates/
+    #prefix: file:src/main/resources/templates/
 
   # 파일 업로드 용량 설정
   servlet:
@@ -71,3 +72,5 @@ springdoc:
 # 소셜 로그인 API 설정
 social:
   kakao.apikey: ${kakao.apikey}
+  naver.apikey: ${naver.apikey}
+  naver.secret: ${naver.secret}
