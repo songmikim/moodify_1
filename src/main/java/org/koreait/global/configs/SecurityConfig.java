@@ -56,7 +56,7 @@ public class SecurityConfig {
          *
          */
         http.authorizeHttpRequests(c -> {
-                c.requestMatchers("/member/join", "/member/login").anonymous() // 비회원 전용
+                c.requestMatchers("/member/join", "/member/login").anonymous() // 비회원 접근가능
                 //.requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll();
         });

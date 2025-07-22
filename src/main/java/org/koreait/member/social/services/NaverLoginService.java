@@ -35,10 +35,10 @@ public class NaverLoginService implements SocialLoginService {
     private final MemberInfoService infoService;
     private final HttpSession session;
 
-    @Value("${social.naver.apikey}")
+    @Value("${naver.apikey}")
     private String apiKey;
 
-    @Value("${social.naver.secret}")
+    @Value("${naver.secret}")
     private String secretKey;
 
     @Override

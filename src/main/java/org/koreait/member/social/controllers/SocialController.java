@@ -26,23 +26,24 @@ public class SocialController {
     @GetMapping("/callback/{channel}")
     public String callback(@PathVariable("channel") String type, @RequestParam(value = "code", required = false) String code, @RequestParam(name="state", required = false) String redirectUrl) {
 
-        // channel이나 code가 null일 때 로그인으로 리턴
+        // channel이나 code가 null일 때 메인으로 리턴
         if (!StringUtils.hasText(type) || !StringUtils.hasText(code)){
-            return "redirect:/member/login";
+            return "redirect:/";
         }
 
-        SocialType socialType; // = SocialType.valueOf(type.toUpperCase());
+        SocialType socialType = SocialType.valueOf(type.toUpperCase());
 
+        if (socialType == SocialType.NONE)return "redirect:/";
         //enum 예외 처리
-        try {
-            socialType = SocialType.valueOf(type.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            // enum에 정의되지 않은 값이면 로그인 페이지로 리디렉트
-            return "redirect:/member/login";
-        }
+        //try {
+        //    socialType = SocialType.valueOf(type.toUpperCase());
+        //} catch (IllegalArgumentException e) {
+        //    // enum에 정의되지 않은 값이면 로그인 페이지로 리디렉트
+        //    return "redirect:/";
+        //}
 
-        //다른 로그인 서비스도 추가할꺼면 바꿔야됌
-        SocialLoginService service = socialType == SocialType.NAVER ? naverLoginService : kakaoLoginService;
+        SocialLoginService service = socialType == SocialType.NAVER ? naverLoginService :
+                                     socialType == SocialType.KAKAO ? kakaoLoginService : null;
 
 
         // 토큰 발급

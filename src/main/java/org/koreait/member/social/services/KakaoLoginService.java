@@ -35,7 +35,7 @@ public class KakaoLoginService implements SocialLoginService {
     private final MemberInfoService infoService;
     private final HttpSession session;
 
-    @Value("${social.kakao.apikey}")
+    @Value("${kakao.apikey}")
     private String apiKey;
 
     @Override
